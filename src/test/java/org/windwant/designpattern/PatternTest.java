@@ -16,6 +16,16 @@ import org.windwant.designpattern.creation.factory.virtualfactory.VirtualFactory
 import org.windwant.designpattern.creation.prototype.ProtoTypePattern;
 import org.windwant.designpattern.creation.singleton.SingletonWithInnerClass;
 import org.windwant.designpattern.creation.singleton.SingletonWithSynchronizedMethod;
+import org.windwant.designpattern.structure.adapter.ChinaVoltage;
+import org.windwant.designpattern.structure.adapter.classadapter.ChinaVoltageClassAdapter;
+import org.windwant.designpattern.structure.adapter.HongkongVoltage;
+import org.windwant.designpattern.structure.adapter.PowerVoltage;
+import org.windwant.designpattern.structure.adapter.interfaceadapter.ManyMethodInterface;
+import org.windwant.designpattern.structure.adapter.interfaceadapter.MyMethod;
+import org.windwant.designpattern.structure.adapter.objectadapter.ChinaVoltageObjectAdapter;
+import org.windwant.designpattern.structure.decorator.Component;
+import org.windwant.designpattern.structure.decorator.DecoratedIconTextComponent;
+import org.windwant.designpattern.structure.decorator.TextComponent;
 
 import java.io.IOException;
 
@@ -90,5 +100,32 @@ public class PatternTest
         RobustDirector robustDirector = new RobustDirector(myRobustBuilder);
         Robust robust = robustDirector.buildRobust("robust-head", "robust-body");
         System.out.println(robust);
+    }
+
+    public void testClassAdapter(){
+        PowerVoltage standard = new HongkongVoltage();
+        standard.givePower();
+        PowerVoltage cus = new ChinaVoltageClassAdapter();
+        cus.givePower();
+    }
+
+    public void testObjectAdapter(){
+        PowerVoltage standard = new HongkongVoltage();
+        standard.givePower();
+        PowerVoltage cus = new ChinaVoltageObjectAdapter(new ChinaVoltage());
+        cus.givePower();
+    }
+
+    public void testInterfaceAdapter(){
+        ManyMethodInterface manyMethodInterface = new MyMethod();
+        manyMethodInterface.methodOne();
+        manyMethodInterface.methodTwo();
+    }
+
+    public void testDecorate(){
+        Component tcom = new TextComponent();
+        tcom.operate();
+        Component itcom = new DecoratedIconTextComponent(tcom);
+        itcom.operate();
     }
 }
