@@ -26,6 +26,10 @@ import org.windwant.designpattern.structure.adapter.objectadapter.ChinaVoltageOb
 import org.windwant.designpattern.structure.decorator.Component;
 import org.windwant.designpattern.structure.decorator.DecoratedIconTextComponent;
 import org.windwant.designpattern.structure.decorator.TextComponent;
+import org.windwant.designpattern.structure.proxy.MovieStar;
+import org.windwant.designpattern.structure.proxy.MovieStarProxy;
+import org.windwant.designpattern.structure.proxy.Star;
+import org.windwant.designpattern.structure.proxy.TVStar;
 
 import java.io.IOException;
 
@@ -127,5 +131,25 @@ public class PatternTest
         tcom.operate();
         Component itcom = new DecoratedIconTextComponent(tcom);
         itcom.operate();
+    }
+
+    public void testProxy(){
+        MovieStar movieStar = new MovieStar();
+        movieStar.movieShow(10000);
+        movieStar.tvShow(20000);
+        Star movieStarProxy = new MovieStarProxy(movieStar);
+        movieStarProxy.movieShow(10000);
+        movieStarProxy.movieShow(20000);
+        movieStarProxy.tvShow(10000);
+        movieStarProxy.tvShow(20000);
+
+        TVStar tvStar = new TVStar();
+        tvStar.movieShow(10000);
+        tvStar.tvShow(10000);
+        Star tvStarProxy = new MovieStarProxy(tvStar);
+        tvStarProxy.movieShow(10000);
+        tvStarProxy.movieShow(20000);
+        tvStarProxy.tvShow(10000);
+        tvStarProxy.tvShow(20000);
     }
 }
