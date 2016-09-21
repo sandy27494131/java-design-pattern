@@ -32,12 +32,17 @@ import org.windwant.designpattern.structure.decorator.Component;
 import org.windwant.designpattern.structure.decorator.DecoratedIconTextComponent;
 import org.windwant.designpattern.structure.decorator.TextComponent;
 import org.windwant.designpattern.structure.facade.ComputerFacade;
+import org.windwant.designpattern.structure.flyweight.FlyWeightMain;
+import org.windwant.designpattern.structure.flyweight.PooledSth;
+import org.windwant.designpattern.structure.flyweight.SharedObject;
 import org.windwant.designpattern.structure.proxy.MovieStar;
 import org.windwant.designpattern.structure.proxy.MovieStarProxy;
 import org.windwant.designpattern.structure.proxy.Star;
 import org.windwant.designpattern.structure.proxy.TVStar;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Unit test for simple App.
@@ -193,5 +198,4 @@ public class PatternTest
         root.add(subrootB);
         root.display(0);
     }
-
 }
