@@ -23,6 +23,11 @@ import org.windwant.designpattern.structure.adapter.PowerVoltage;
 import org.windwant.designpattern.structure.adapter.interfaceadapter.ManyMethodInterface;
 import org.windwant.designpattern.structure.adapter.interfaceadapter.MyMethod;
 import org.windwant.designpattern.structure.adapter.objectadapter.ChinaVoltageObjectAdapter;
+import org.windwant.designpattern.structure.bridge.BridgeRemoterOfSunsung;
+import org.windwant.designpattern.structure.bridge.SonyTV;
+import org.windwant.designpattern.structure.bridge.SunsungTV;
+import org.windwant.designpattern.structure.composite.Composite;
+import org.windwant.designpattern.structure.composite.Leaf;
 import org.windwant.designpattern.structure.decorator.Component;
 import org.windwant.designpattern.structure.decorator.DecoratedIconTextComponent;
 import org.windwant.designpattern.structure.decorator.TextComponent;
@@ -160,4 +165,33 @@ public class PatternTest
         computerFacade.run();
         computerFacade.shutdown();
     }
+
+    public void testBridge(){
+        BridgeRemoterOfSunsung sunsung = new BridgeRemoterOfSunsung(new SunsungTV());
+        sunsung.turnOn();
+        sunsung.turnOff();
+        sunsung.switchChannel(10);
+
+        BridgeRemoterOfSunsung sony = new BridgeRemoterOfSunsung(new SonyTV());
+        sony.turnOn();
+        sony.turnOff();
+        sony.switchChannel(10);
+    }
+
+    public void testComposite(){
+        Composite root = new Composite("root");
+        root.add(new Leaf("leafA"));
+        root.add(new Leaf("leafB"));
+        Composite subrootA = new Composite("subrootA");
+        subrootA.add(new Leaf("subleafA"));
+        subrootA.add(new Leaf("subleafB"));
+        Composite subrootB = new Composite("subrootB");
+        subrootB.add(new Leaf("subleafC"));
+        subrootB.add(new Leaf("subleafD"));
+        subrootB.add(new Leaf("subleafE"));
+        root.add(subrootA);
+        root.add(subrootB);
+        root.display(0);
+    }
+
 }

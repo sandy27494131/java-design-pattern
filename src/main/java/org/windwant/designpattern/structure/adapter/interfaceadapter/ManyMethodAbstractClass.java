@@ -5,9 +5,7 @@ package org.windwant.designpattern.structure.adapter.interfaceadapter;
  */
 public abstract class ManyMethodAbstractClass implements ManyMethodInterface {
 
-    public void methodOne() {
-
-    }
+    public abstract void methodOne();
 
     public void methodTwo() {
 
