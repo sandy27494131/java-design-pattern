@@ -26,6 +26,7 @@ import org.windwant.designpattern.structure.adapter.objectadapter.ChinaVoltageOb
 import org.windwant.designpattern.structure.decorator.Component;
 import org.windwant.designpattern.structure.decorator.DecoratedIconTextComponent;
 import org.windwant.designpattern.structure.decorator.TextComponent;
+import org.windwant.designpattern.structure.facade.ComputerFacade;
 import org.windwant.designpattern.structure.proxy.MovieStar;
 import org.windwant.designpattern.structure.proxy.MovieStarProxy;
 import org.windwant.designpattern.structure.proxy.Star;
@@ -151,5 +152,12 @@ public class PatternTest
         tvStarProxy.movieShow(20000);
         tvStarProxy.tvShow(10000);
         tvStarProxy.tvShow(20000);
+    }
+
+    public void testFacade(){
+        ComputerFacade computerFacade = new ComputerFacade();
+        computerFacade.startup();
+        computerFacade.run();
+        computerFacade.shutdown();
     }
 }
