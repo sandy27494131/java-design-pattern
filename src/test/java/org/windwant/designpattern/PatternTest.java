@@ -16,6 +16,10 @@ import org.windwant.designpattern.creation.factory.virtualfactory.VirtualFactory
 import org.windwant.designpattern.creation.prototype.ProtoTypePattern;
 import org.windwant.designpattern.creation.singleton.SingletonWithInnerClass;
 import org.windwant.designpattern.creation.singleton.SingletonWithSynchronizedMethod;
+import org.windwant.designpattern.relations.strategy.BlockEnemyStrategy;
+import org.windwant.designpattern.relations.strategy.Context;
+import org.windwant.designpattern.relations.strategy.FindFriendStrategy;
+import org.windwant.designpattern.relations.strategy.FindWayStrategy;
 import org.windwant.designpattern.structure.adapter.ChinaVoltage;
 import org.windwant.designpattern.structure.adapter.classadapter.ChinaVoltageClassAdapter;
 import org.windwant.designpattern.structure.adapter.HongkongVoltage;
@@ -192,5 +196,11 @@ public class PatternTest
         root.add(subrootA);
         root.add(subrootB);
         root.display(0);
+    }
+
+    public void testStrategy(){
+        new Context(new FindFriendStrategy()).operate();
+        new Context(new FindWayStrategy()).operate();
+        new Context(new BlockEnemyStrategy()).operate();
     }
 }
