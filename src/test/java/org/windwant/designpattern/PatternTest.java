@@ -16,6 +16,9 @@ import org.windwant.designpattern.creation.factory.virtualfactory.VirtualFactory
 import org.windwant.designpattern.creation.prototype.ProtoTypePattern;
 import org.windwant.designpattern.creation.singleton.SingletonWithInnerClass;
 import org.windwant.designpattern.creation.singleton.SingletonWithSynchronizedMethod;
+import org.windwant.designpattern.relations.classes.iterator.MyProjectContainer;
+import org.windwant.designpattern.relations.classes.iterator.ProjectContainer;
+import org.windwant.designpattern.relations.classes.iterator.ProjectIterator;
 import org.windwant.designpattern.relations.classes.observer.TheMan;
 import org.windwant.designpattern.relations.classes.observer.TheFirstWatcher;
 import org.windwant.designpattern.relations.classes.observer.TheSecondWatcher;
@@ -252,5 +255,18 @@ public class PatternTest
         theWoman.haveFood();
         theWoman.haveFun();
 
+    }
+
+    public void testIterator(){
+        ProjectContainer project = new MyProjectContainer();
+
+        for(int i = 0; i < 100; i++){
+            project.add("the " + i + " project", i*5, i*1000);
+        }
+
+        ProjectIterator projectIterator = project.iterator();
+        while (projectIterator.hasNext()){
+            System.out.println(((ProjectContainer)projectIterator.next()).getProjectInfo());
+        }
     }
 }
