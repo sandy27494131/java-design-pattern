@@ -16,6 +16,11 @@ import org.windwant.designpattern.creation.factory.virtualfactory.VirtualFactory
 import org.windwant.designpattern.creation.prototype.ProtoTypePattern;
 import org.windwant.designpattern.creation.singleton.SingletonWithInnerClass;
 import org.windwant.designpattern.creation.singleton.SingletonWithSynchronizedMethod;
+import org.windwant.designpattern.relations.mediator.AbstractMediator;
+import org.windwant.designpattern.relations.mediator.Mediator;
+import org.windwant.designpattern.relations.mediator.Purchase;
+import org.windwant.designpattern.relations.mediator.Sale;
+import org.windwant.designpattern.relations.mediator.Stock;
 import org.windwant.designpattern.relations.strategy.BlockEnemyStrategy;
 import org.windwant.designpattern.relations.strategy.Context;
 import org.windwant.designpattern.relations.strategy.FindFriendStrategy;
@@ -202,5 +207,17 @@ public class PatternTest
         new Context(new FindFriendStrategy()).operate();
         new Context(new FindWayStrategy()).operate();
         new Context(new BlockEnemyStrategy()).operate();
+    }
+
+    public void testMediator(){
+        AbstractMediator mediator = new Mediator();
+        Purchase purchase = new Purchase(mediator);
+        purchase.buyComputer(100);
+
+        Sale sale = new Sale(mediator);
+        sale.sellComputer(1);
+
+        Stock stock = new Stock(mediator);
+        stock.clearStock();
     }
 }
