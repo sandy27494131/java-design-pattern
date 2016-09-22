@@ -22,6 +22,10 @@ import org.windwant.designpattern.relations.classes.chain.Husband;
 import org.windwant.designpattern.relations.classes.chain.RealWoman;
 import org.windwant.designpattern.relations.classes.chain.Son;
 import org.windwant.designpattern.relations.classes.chain.Woman;
+import org.windwant.designpattern.relations.classes.command.AddRequirementCommand;
+import org.windwant.designpattern.relations.classes.command.DeletePageCommand;
+import org.windwant.designpattern.relations.classes.command.Executor;
+import org.windwant.designpattern.relations.classes.command.RequirementGroup;
 import org.windwant.designpattern.relations.classes.iterator.MyProjectContainer;
 import org.windwant.designpattern.relations.classes.iterator.ProjectContainer;
 import org.windwant.designpattern.relations.classes.iterator.ProjectIterator;
@@ -293,5 +297,13 @@ public class PatternTest
         for (Woman woman: arrayList){
             father.handleMessage(woman);
         }
+    }
+
+    public void testCommand(){
+        Executor executor = new Executor();
+        executor.setCommand(new AddRequirementCommand());
+        executor.action();
+        executor.setCommand(new DeletePageCommand());
+        executor.action();
     }
 }
