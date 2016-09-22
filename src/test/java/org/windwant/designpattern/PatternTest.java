@@ -25,6 +25,9 @@ import org.windwant.designpattern.relations.strategy.BlockEnemyStrategy;
 import org.windwant.designpattern.relations.strategy.Context;
 import org.windwant.designpattern.relations.strategy.FindFriendStrategy;
 import org.windwant.designpattern.relations.strategy.FindWayStrategy;
+import org.windwant.designpattern.relations.template.CarModel;
+import org.windwant.designpattern.relations.template.LittleCar;
+import org.windwant.designpattern.relations.template.SUVCar;
 import org.windwant.designpattern.structure.adapter.ChinaVoltage;
 import org.windwant.designpattern.structure.adapter.classadapter.ChinaVoltageClassAdapter;
 import org.windwant.designpattern.structure.adapter.HongkongVoltage;
@@ -219,5 +222,15 @@ public class PatternTest
 
         Stock stock = new Stock(mediator);
         stock.clearStock();
+    }
+
+    public void testTemplate(){
+        CarModel little = new LittleCar();
+        little.setAlarmFlag(false);
+        little.run();
+
+        CarModel suv = new SUVCar();
+        suv.setAlarmFlag(true);
+        suv.run();
     }
 }
