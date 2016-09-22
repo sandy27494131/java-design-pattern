@@ -16,6 +16,12 @@ import org.windwant.designpattern.creation.factory.virtualfactory.VirtualFactory
 import org.windwant.designpattern.creation.prototype.ProtoTypePattern;
 import org.windwant.designpattern.creation.singleton.SingletonWithInnerClass;
 import org.windwant.designpattern.creation.singleton.SingletonWithSynchronizedMethod;
+import org.windwant.designpattern.relations.classes.chain.Father;
+import org.windwant.designpattern.relations.classes.chain.Handler;
+import org.windwant.designpattern.relations.classes.chain.Husband;
+import org.windwant.designpattern.relations.classes.chain.RealWoman;
+import org.windwant.designpattern.relations.classes.chain.Son;
+import org.windwant.designpattern.relations.classes.chain.Woman;
 import org.windwant.designpattern.relations.classes.iterator.MyProjectContainer;
 import org.windwant.designpattern.relations.classes.iterator.ProjectContainer;
 import org.windwant.designpattern.relations.classes.iterator.ProjectIterator;
@@ -57,6 +63,10 @@ import org.windwant.designpattern.structure.proxy.Star;
 import org.windwant.designpattern.structure.proxy.TVStar;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
+import java.util.concurrent.ThreadLocalRandom;
 
 /**
  * Unit test for simple App.
@@ -267,6 +277,21 @@ public class PatternTest
         ProjectIterator projectIterator = project.iterator();
         while (projectIterator.hasNext()){
             System.out.println(((ProjectContainer)projectIterator.next()).getProjectInfo());
+        }
+    }
+
+    public void testChain(){
+        List<Woman> arrayList = new ArrayList();
+        for(int i = 0; i < 5; i++){
+            arrayList.add(new RealWoman(ThreadLocalRandom.current().nextInt(3) + 1,"i need wondering"));
+        }
+        Handler father = new Father();
+        Handler husband = new Husband();
+        Handler son = new Son();
+        father.setNextHandler(husband);
+        husband.setNextHandler(son);
+        for (Woman woman: arrayList){
+            father.handleMessage(woman);
         }
     }
 }
