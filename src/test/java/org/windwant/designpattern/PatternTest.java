@@ -16,18 +16,22 @@ import org.windwant.designpattern.creation.factory.virtualfactory.VirtualFactory
 import org.windwant.designpattern.creation.prototype.ProtoTypePattern;
 import org.windwant.designpattern.creation.singleton.SingletonWithInnerClass;
 import org.windwant.designpattern.creation.singleton.SingletonWithSynchronizedMethod;
+import org.windwant.designpattern.relations.classes.observer.TheMan;
+import org.windwant.designpattern.relations.classes.observer.TheFirstWatcher;
+import org.windwant.designpattern.relations.classes.observer.TheSecondWatcher;
+import org.windwant.designpattern.relations.classes.observer.TheWoman;
 import org.windwant.designpattern.relations.mediator.AbstractMediator;
 import org.windwant.designpattern.relations.mediator.Mediator;
 import org.windwant.designpattern.relations.mediator.Purchase;
 import org.windwant.designpattern.relations.mediator.Sale;
 import org.windwant.designpattern.relations.mediator.Stock;
-import org.windwant.designpattern.relations.strategy.BlockEnemyStrategy;
-import org.windwant.designpattern.relations.strategy.Context;
-import org.windwant.designpattern.relations.strategy.FindFriendStrategy;
-import org.windwant.designpattern.relations.strategy.FindWayStrategy;
-import org.windwant.designpattern.relations.template.CarModel;
-import org.windwant.designpattern.relations.template.LittleCar;
-import org.windwant.designpattern.relations.template.SUVCar;
+import org.windwant.designpattern.relations.parentwithson.strategy.BlockEnemyStrategy;
+import org.windwant.designpattern.relations.parentwithson.strategy.Context;
+import org.windwant.designpattern.relations.parentwithson.strategy.FindFriendStrategy;
+import org.windwant.designpattern.relations.parentwithson.strategy.FindWayStrategy;
+import org.windwant.designpattern.relations.parentwithson.template.CarModel;
+import org.windwant.designpattern.relations.parentwithson.template.LittleCar;
+import org.windwant.designpattern.relations.parentwithson.template.SUVCar;
 import org.windwant.designpattern.structure.adapter.ChinaVoltage;
 import org.windwant.designpattern.structure.adapter.classadapter.ChinaVoltageClassAdapter;
 import org.windwant.designpattern.structure.adapter.HongkongVoltage;
@@ -232,5 +236,21 @@ public class PatternTest
         CarModel suv = new SUVCar();
         suv.setAlarmFlag(true);
         suv.run();
+    }
+
+    public void testObserver(){
+        TheFirstWatcher theFirstWatcher = new TheFirstWatcher();
+        TheSecondWatcher theSecondWatcher = new TheSecondWatcher();
+        TheMan theMan = new TheMan("the man");
+        theMan.addObserver(theFirstWatcher);
+        theMan.addObserver(theSecondWatcher);
+        theMan.haveFood();
+        theMan.haveFun();
+        TheWoman theWoman = new TheWoman("the woman");
+        theWoman.addObserver(theFirstWatcher);
+        theWoman.addObserver(theSecondWatcher);
+        theWoman.haveFood();
+        theWoman.haveFun();
+
     }
 }
