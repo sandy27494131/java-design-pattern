@@ -3,7 +3,6 @@ package org.windwant.designpattern;
 import junit.framework.Test;
 import junit.framework.TestCase;
 import junit.framework.TestSuite;
-import org.omg.CORBA.ORB;
 import org.windwant.designpattern.creation.builder.MyRobustBuilder;
 import org.windwant.designpattern.creation.builder.Robust;
 import org.windwant.designpattern.creation.builder.RobustDirector;
@@ -26,7 +25,6 @@ import org.windwant.designpattern.relations.classes.chain.Woman;
 import org.windwant.designpattern.relations.classes.command.AddRequirementCommand;
 import org.windwant.designpattern.relations.classes.command.DeletePageCommand;
 import org.windwant.designpattern.relations.classes.command.Executor;
-import org.windwant.designpattern.relations.classes.command.RequirementGroup;
 import org.windwant.designpattern.relations.classes.iterator.MyProjectContainer;
 import org.windwant.designpattern.relations.classes.iterator.ProjectContainer;
 import org.windwant.designpattern.relations.classes.iterator.ProjectIterator;
@@ -36,11 +34,16 @@ import org.windwant.designpattern.relations.classes.observer.TheSecondWatcher;
 import org.windwant.designpattern.relations.classes.observer.TheWoman;
 import org.windwant.designpattern.relations.classstate.memento.Origin;
 import org.windwant.designpattern.relations.classstate.memento.Storage;
-import org.windwant.designpattern.relations.mediator.AbstractMediator;
-import org.windwant.designpattern.relations.mediator.Mediator;
-import org.windwant.designpattern.relations.mediator.Purchase;
-import org.windwant.designpattern.relations.mediator.Sale;
-import org.windwant.designpattern.relations.mediator.Stock;
+import org.windwant.designpattern.relations.classstate.mediator.AbstractMediator;
+import org.windwant.designpattern.relations.classstate.mediator.Mediator;
+import org.windwant.designpattern.relations.classstate.mediator.Purchase;
+import org.windwant.designpattern.relations.classstate.mediator.Sale;
+import org.windwant.designpattern.relations.classstate.mediator.Stock;
+import org.windwant.designpattern.relations.classstate.visitor.ELENodeA;
+import org.windwant.designpattern.relations.classstate.visitor.ELENodeB;
+import org.windwant.designpattern.relations.classstate.visitor.NodeContainer;
+import org.windwant.designpattern.relations.classstate.visitor.VisitorMan;
+import org.windwant.designpattern.relations.classstate.visitor.VisitorWoman;
 import org.windwant.designpattern.relations.parentwithson.strategy.BlockEnemyStrategy;
 import org.windwant.designpattern.relations.parentwithson.strategy.Context;
 import org.windwant.designpattern.relations.parentwithson.strategy.FindFriendStrategy;
@@ -72,7 +75,6 @@ import org.windwant.designpattern.structure.proxy.TVStar;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
 
 /**
@@ -322,5 +324,13 @@ public class PatternTest
 
         origin.reverseMemento(storage.getSavePoint(0));
         System.out.println(origin.toString());
+    }
+
+    public void testVisitor(){
+        NodeContainer nodeContainer = new NodeContainer();
+        nodeContainer.addNode(new ELENodeA());
+        nodeContainer.addNode(new ELENodeB());
+        nodeContainer.execute(new VisitorMan());
+        nodeContainer.execute(new VisitorWoman());
     }
 }

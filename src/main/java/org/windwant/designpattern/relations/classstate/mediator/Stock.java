@@ -1,6 +1,4 @@
-package org.windwant.designpattern.relations.mediator;
-
-import org.omg.CORBA.PUBLIC_MEMBER;
+package org.windwant.designpattern.relations.classstate.mediator;
 
 /**
  * Created by aayongche on 2016/9/21.

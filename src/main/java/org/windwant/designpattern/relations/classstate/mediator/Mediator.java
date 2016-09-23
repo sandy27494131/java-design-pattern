@@ -1,4 +1,4 @@
-package org.windwant.designpattern.relations.mediator;
+package org.windwant.designpattern.relations.classstate.mediator;
 
 /**
  * Created by aayongche on 2016/9/21.

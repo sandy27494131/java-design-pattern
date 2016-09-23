@@ -1,4 +1,4 @@
-package org.windwant.designpattern.relations.mediator;
+package org.windwant.designpattern.relations.classstate.mediator;
 
 import java.util.Random;
 
