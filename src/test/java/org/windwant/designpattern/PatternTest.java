@@ -3,6 +3,7 @@ package org.windwant.designpattern;
 import junit.framework.Test;
 import junit.framework.TestCase;
 import junit.framework.TestSuite;
+import org.omg.CORBA.ORB;
 import org.windwant.designpattern.creation.builder.MyRobustBuilder;
 import org.windwant.designpattern.creation.builder.Robust;
 import org.windwant.designpattern.creation.builder.RobustDirector;
@@ -33,6 +34,8 @@ import org.windwant.designpattern.relations.classes.observer.TheMan;
 import org.windwant.designpattern.relations.classes.observer.TheFirstWatcher;
 import org.windwant.designpattern.relations.classes.observer.TheSecondWatcher;
 import org.windwant.designpattern.relations.classes.observer.TheWoman;
+import org.windwant.designpattern.relations.classstate.memento.Origin;
+import org.windwant.designpattern.relations.classstate.memento.Storage;
 import org.windwant.designpattern.relations.mediator.AbstractMediator;
 import org.windwant.designpattern.relations.mediator.Mediator;
 import org.windwant.designpattern.relations.mediator.Purchase;
@@ -305,5 +308,19 @@ public class PatternTest
         executor.action();
         executor.setCommand(new DeletePageCommand());
         executor.action();
+    }
+
+    public void testMemento(){
+        Origin origin = new Origin();
+        Storage storage = new Storage();
+        storage.saveMemento(origin.setState("state1"));
+        System.out.println(origin.toString());
+        storage.saveMemento(origin.setState("state2"));
+        System.out.println(origin.toString());
+        storage.saveMemento(origin.setState("state3"));
+        System.out.println(origin.toString());
+
+        origin.reverseMemento(storage.getSavePoint(0));
+        System.out.println(origin.toString());
     }
 }
